@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import messages from '../../../assets/messages/messages';
 
 const LabeledInput = (props) => (
   <div className="pure-control-group">
@@ -11,6 +12,7 @@ const LabeledInput = (props) => (
 
 const ErrorPanel = ({messageKey}) => (
   <p className="error-panel">
+    {messages.login.error.badLogin}
   </p>
 );
 
@@ -32,7 +34,7 @@ export default class LoginForm extends Component {
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
       <div>
-
+        <h1>{messages.login.title}</h1>
         {errorPanel}
 
         <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned">

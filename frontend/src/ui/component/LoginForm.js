@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Translate from 'react-translate-component';
 
 const LabeledInput = (props) => (
   <div className="pure-control-group">
@@ -12,7 +11,6 @@ const LabeledInput = (props) => (
 
 const ErrorPanel = ({messageKey}) => (
   <p className="error-panel">
-    <Translate content={messageKey} />
   </p>
 );
 
@@ -34,9 +32,6 @@ export default class LoginForm extends Component {
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
       <div>
-        <Translate component="h2" content="login.title" />
-
-        <Translate component="p" content="login.hint" />
 
         {errorPanel}
 

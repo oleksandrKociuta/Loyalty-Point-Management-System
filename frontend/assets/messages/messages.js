@@ -12,5 +12,9 @@ module.exports =
       unauthorized: "Please login to access this resource",
       badLogin: "Incorrect user and password"
     }
+  },
+  registration: {
+    title: "Registration Page",
+    badRegistration: "Incorect data! Repeat please"
   }
 }

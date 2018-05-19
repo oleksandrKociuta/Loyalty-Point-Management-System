@@ -28,9 +28,8 @@ export class App extends Component {
   }
 
   render() {
-    const menuItems = [
-      this.props.isAuthenticated ? {label: 'Logout', link: '/logout'} : {label: 'Login', link: '/login'},
-    ];
+    const menuItems = 
+      this.props.isAuthenticated ? [ {label: 'Logout', link: '/logout'} ] : [ {label: 'Login', link: '/login'}, {label: 'Registration', link: '/registration'} ];
 
     return (
       <div id="application">

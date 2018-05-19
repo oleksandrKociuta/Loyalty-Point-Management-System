@@ -22,10 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http
       .authorizeRequests()
       .antMatchers("/api/session").permitAll()
-      .antMatchers(HttpMethod.GET, "/api/**").authenticated()
-      .antMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
-      .antMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
-      .antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+      .antMatchers("api/user/createUser").permitAll()
       .and()
       .requestCache()
       .requestCache(new NullRequestCache())

@@ -7,7 +7,7 @@ import spock.lang.Stepwise
 import spockmvc.RequestParams
 
 @Stepwise
-class AuthenticationResourceSpec extends AbstractMvcSpec {
+class AuthenticationControllerSpec extends AbstractMvcSpec {
 
   @Shared
   String token

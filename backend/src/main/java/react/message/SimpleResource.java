@@ -1,4 +1,4 @@
-package react.api;
+package react.message;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 @RestController
 public class SimpleResource {
 
-  @RequestMapping("/api/simple")
+  @RequestMapping("/simple")
   public List<String> resource() {
     return IntStream.generate(() -> new Random().nextInt(42))
       .limit(2 + new Random().nextInt(10))

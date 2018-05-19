@@ -2,8 +2,8 @@ package react.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import react.model.user.User;
+import react.model.shop.Shop;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface ShopRepository extends CrudRepository<Shop, Long> {
 }

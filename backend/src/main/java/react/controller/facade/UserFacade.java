@@ -7,8 +7,8 @@ import react.repository.UserRepository;
 @Component
 public class UserFacade {
 
-//  @Autowired
-//  private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
 
 }

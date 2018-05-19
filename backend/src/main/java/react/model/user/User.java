@@ -4,8 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import react.model.discont.Discount;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -18,16 +21,5 @@ public class User implements Serializable {
   private String username;
   private String password;
   private Role role;
-  private String token;
-  private boolean authenticated;
-
-  public User(String firstName, String lastName, String email, String username, String password, String token, boolean authenticated) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.username = username;
-    this.password = password;
-    this.token = token;
-    this.authenticated = authenticated;
-  }
+  private Collection<Discount> disconts = new ArrayList<>();
 }

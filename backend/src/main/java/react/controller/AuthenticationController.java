@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import react.controller.facade.UserFacade;
 import react.model.Credentials;
-import react.model.user.User;
+import react.model.user.UserDTO;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,19 +21,22 @@ public class AuthenticationController {
   @Autowired
   private AuthenticationManager authenticationManager;
 
+  @Autowired
+  private UserFacade userFacade;
+
   @RequestMapping(method = RequestMethod.POST)
-  public User login(@RequestBody Credentials credentials, HttpSession httpSession) {
+  public UserDTO login(@RequestBody Credentials credentials, HttpSession httpSession) {
     Authentication authentication = new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword());
     SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(authentication));
 
-    User user = null;//new User(credentials.getUsername(), httpSession.getId(), true);
+    UserDTO user = null;//new UserDTO(credentials.getUsername(), httpSession.getId(), true);
     httpSession.setAttribute("user", user);
     return user;
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public User session(HttpSession session) {
-    return (User) session.getAttribute("user");
+  public UserDTO session(HttpSession session) {
+    return (UserDTO) session.getAttribute("user");
   }
 
   @RequestMapping(method = RequestMethod.DELETE)

@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import react.model.shop.Shop;
 import react.model.user.User;
 
 import javax.persistence.*;
@@ -18,12 +19,17 @@ public class Discount implements Serializable {
   @Id
   @GeneratedValue
   private long id;
+  @Enumerated(value = EnumType.STRING)
   private DiscountsStatus status;
+  @Enumerated(value = EnumType.STRING)
   private DiscountType type;
   private double discount;
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
+  @ManyToOne
+  @JoinColumn(name = "shop_id")
+  private Shop shop;
 
   public Discount(long id, DiscountsStatus status, DiscountType type, double discount, User user) {
     this.id = id;

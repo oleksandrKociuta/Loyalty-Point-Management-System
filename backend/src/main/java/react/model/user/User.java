@@ -24,8 +24,10 @@ public class User implements Serializable {
   private String firstName;
   private String lastName;
   private String email;
+  @Column(unique = true)
   private String username;
   private String password;
+  @Enumerated(value = EnumType.STRING)
   private Role role;
   @OneToMany(mappedBy = "user")
   private Collection<Discount> discounts = new ArrayList<>();

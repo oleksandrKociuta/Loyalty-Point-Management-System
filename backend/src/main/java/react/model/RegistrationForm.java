@@ -14,14 +14,16 @@ public class RegistrationForm {
   private String lastName;
   private String email;
   private String username;
+  private String phone;
   private String password1;
   private String password2;
 
-  public RegistrationForm(String firstName, String lastName, String email, String username, String password1, String password2) {
+  public RegistrationForm(String firstName, String lastName, String email, String username, String phone, String password1, String password2) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.username = username;
+    this.phone = phone;
     this.password1 = password1;
     this.password2 = password2;
   }

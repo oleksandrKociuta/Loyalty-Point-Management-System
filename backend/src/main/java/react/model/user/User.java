@@ -26,6 +26,8 @@ public class User implements Serializable {
   private String email;
   @Column(unique = true)
   private String username;
+  @Column(unique = true)
+  private String phone;
   private String password;
   @Enumerated(value = EnumType.STRING)
   private Role role;
@@ -33,4 +35,18 @@ public class User implements Serializable {
   private Collection<Discount> discounts = new ArrayList<>();
   @ManyToMany(mappedBy = "users")
   private Collection<Shop> shops = new ArrayList<>();
+
+  public User(long id, String firstName, String lastName, String email, String username, String phone, String password,
+              Role role, Collection<Discount> discounts, Collection<Shop> shops) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.username = username;
+    this.phone = phone;
+    this.password = password;
+    this.role = role;
+    this.discounts = discounts;
+    this.shops = shops;
+  }
 }

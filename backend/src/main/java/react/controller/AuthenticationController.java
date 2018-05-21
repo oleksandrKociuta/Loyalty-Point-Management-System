@@ -1,9 +1,10 @@
 package react.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,19 +19,19 @@ import javax.servlet.http.HttpSession;
 @RestController()
 @RequestMapping("/session")
 public class AuthenticationController {
-  @Autowired
-  private AuthenticationManager authenticationManager;
 
   @Autowired
   private UserFacade userFacade;
 
   @RequestMapping(method = RequestMethod.POST)
   public UserDTO login(@RequestBody Credentials credentials, HttpSession httpSession) {
-    Authentication authentication = new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword());
-    SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(authentication));
-
-    UserDTO user = null;//new UserDTO(credentials.getUsername(), httpSession.getId(), true);
+    UserDTO user = userFacade.getUserForLogin(credentials, httpSession);
+    if (user == null) {
+      throw new AuthenticationCredentialsNotFoundException("User not found!");
+    }
     httpSession.setAttribute("user", user);
+    Authentication authentication = new UsernamePasswordAuthenticationToken(user, credentials);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
     return user;
   }
 

@@ -10,11 +10,14 @@ const LabeledInput = (props) => (
   </div>
 );
 
-const ErrorPanel = ({messageKey}) => (
-  <p className="error-panel">
-    {messages.registration.badRegistration}
-  </p>
-);
+const ErrorPanel = ({messageKey}) => { 
+  let errorMessage = _.get(messages, messageKey, messageKey);
+  return (
+    <p className="error-panel">
+      {errorMessage}
+    </p>
+  );
+}
 
 export default class RegistrationForm extends Component {
 
@@ -23,8 +26,9 @@ export default class RegistrationForm extends Component {
     lastName: "",
     email: "",
     username: "",
+    phone: "",
     password1: "",
-    password2: ""
+    password2: "",
   };
 
   handleInputChange = (e) => {
@@ -34,7 +38,7 @@ export default class RegistrationForm extends Component {
   };
 
   render() {
-    const {errorMessage} = this.props;
+    const {errorMessage} = this.props ? this.props : this.state; 
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
       <div>
@@ -46,6 +50,7 @@ export default class RegistrationForm extends Component {
           <LabeledInput onChange={this.handleInputChange} label="Last name" name="lastName"/>
           <LabeledInput onChange={this.handleInputChange} label="Email" name="email"/>
           <LabeledInput onChange={this.handleInputChange} label="Login" name="username"/>
+          <LabeledInput onChange={this.handleInputChange} label="Phone" name="phone"/>
           <LabeledInput onChange={this.handleInputChange} label="Enter Password" name="password1" type="password"/>
           <LabeledInput onChange={this.handleInputChange} label="Re-enter Password" name="password2" type="password"/>
           <div className="pure-controls">
@@ -59,6 +64,31 @@ export default class RegistrationForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {register} = this.props;
-    register(this.state);
+    if(this.validateInput(this.state)) {
+      register(this.state);
+    } 
+  };
+
+  validateInput = (input) => {
+    let errorMessage;
+    if(this.isValidInput(input)) {
+      errorMessage = messages.registration.error.emptyMandatoryFields;
+    } else if(input.password1 !== input.password2 || input.password1.length < 8){
+      errorMessage = messages.registration.error.passwordValidationError;
+    }
+    this.setState({errorMessage: errorMessage});
+    return errorMessage ? false : true;
+  };
+
+  isValidInput = (input) => {
+    var inputKeys =  Object.keys(input).filter(function(e) {
+      return e !== 'errorMessage';
+    });
+    inputKeys.forEach(function(a) {
+      if(input[a] === ''){
+        return true;
+      }
+    }.bind(this));
+    return false;
   }
 }

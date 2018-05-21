@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import messages from '../../../assets/messages/messages';
+import * as _ from 'lodash'; 
 
 const LabeledInput = (props) => (
   <div className="pure-control-group">
@@ -10,11 +11,14 @@ const LabeledInput = (props) => (
   </div>
 );
 
-const ErrorPanel = ({messageKey}) => (
-  <p className="error-panel">
-    {messages.login.error.badLogin}
-  </p>
-);
+const ErrorPanel = ({messageKey}) => {
+  let errorMessage = _.get(messages, messageKey, "Can't find error message...");
+  return (
+    <p className="error-panel">
+      {errorMessage}
+    </p>
+  );
+}
 
 export default class LoginForm extends Component {
 

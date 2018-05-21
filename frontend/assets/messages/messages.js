@@ -15,6 +15,10 @@ module.exports =
   },
   registration: {
     title: "Registration Page",
-    badRegistration: "Incorect data! Repeat please"
+    error: {
+      emptyMandatoryFields: "Please input ALL fields!",
+      passwordValidationError: "Passwords must be identical, and the length of the password must be greater than eight characters long!",
+      duplication: "Login or Phone are already used!"
+    }
   }
 }

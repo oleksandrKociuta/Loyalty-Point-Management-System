@@ -8,7 +8,7 @@ import RegistrationPage from 'container/RegistrationPage';
 
 export default (onLogout) => (
   <Route path="/" name="app" component={App}>
-    <IndexRoute component={SimpleListComponent}/>
+    <Route path="mainPage" component = {SimpleListComponent}/>
     <Route path="login" component={LoginPage}/>
     <Route path="logout" onEnter={onLogout}/>
     <Route path="registration" component={RegistrationPage}/>

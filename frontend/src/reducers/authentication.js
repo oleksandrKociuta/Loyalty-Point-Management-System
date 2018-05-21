@@ -88,8 +88,9 @@ export function login(username, password) {
     promise: (client) => client.post('/api/session', {username, password}),
     afterSuccess: (dispatch, getState, response) => {
       localStorage.setItem('auth-token', response.headers['x-auth-token']);
-      const routingState = getState().routing.locationBeforeTransitions.state || {};
-      browserHistory.push(routingState.nextPathname || '');
+      const currentPath = getState().routing.locationBeforeTransitions.pathname;
+      console.log(currentPath);
+      browserHistory.replace({pathname: '/mainPage', state: {nextPathname: currentPath}});
     }
   };
 }

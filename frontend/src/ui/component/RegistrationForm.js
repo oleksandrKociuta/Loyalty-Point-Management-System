@@ -31,6 +31,14 @@ export default class RegistrationForm extends Component {
     password2: "",
   };
 
+  componentDidMount() {
+    this.setState({errorMessage: this.props.errorMessage});;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({errorMessage: nextProps.errorMessage});
+  }
+
   handleInputChange = (e) => {
     let value = e.target.value;
     let inputName = e.target.name;
@@ -38,7 +46,7 @@ export default class RegistrationForm extends Component {
   };
 
   render() {
-    const {errorMessage} = this.props ? this.props : this.state; 
+    const {errorMessage} = this.state; 
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
       <div>
@@ -71,7 +79,7 @@ export default class RegistrationForm extends Component {
 
   validateInput = (input) => {
     let errorMessage;
-    if(this.isValidInput(input)) {
+    if(!this.isValidInput(input)) {
       errorMessage = messages.registration.error.emptyMandatoryFields;
     } else if(input.password1 !== input.password2 || input.password1.length < 8){
       errorMessage = messages.registration.error.passwordValidationError;
@@ -81,14 +89,15 @@ export default class RegistrationForm extends Component {
   };
 
   isValidInput = (input) => {
-    var inputKeys =  Object.keys(input).filter(function(e) {
+    let isValidate = true;
+    let inputKeys =  Object.keys(input).filter(function(e) {
       return e !== 'errorMessage';
     });
     inputKeys.forEach(function(a) {
-      if(input[a] === ''){
-        return true;
+      if(input[a] === '') {
+        isValidate = false;
       }
     }.bind(this));
-    return false;
+    return isValidate;
   }
 }

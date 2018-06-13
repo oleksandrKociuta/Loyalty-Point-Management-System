@@ -21,7 +21,7 @@ public class PayCard implements Serializable {
   @GeneratedValue
   private long id;
   @Enumerated(value = EnumType.STRING)
-  private CardStatus status;
+  private CardStatus status = CardStatus.IN_PROGRES;
   private BigDecimal balance;
   @ManyToOne
   @JoinColumn(name = "user_id")

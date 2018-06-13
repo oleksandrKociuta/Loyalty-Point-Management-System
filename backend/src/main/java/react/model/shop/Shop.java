@@ -25,12 +25,6 @@ public class Shop implements Serializable {
   @Enumerated(value = EnumType.STRING)
   private ShopType type;
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "user_shop",
-    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "shop_id", referencedColumnName = "id"))
-  private Collection<User> users = new ArrayList<>();
-
-  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "product_shop",
     joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "shop_id", referencedColumnName = "id"))

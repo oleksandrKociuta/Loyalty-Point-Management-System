@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import react.controller.facade.UserFacade;
 import react.model.Credentials;
-import react.model.user.UserDTO;
+import react.model.user.User;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,8 +23,8 @@ public class AuthenticationController {
   private UserFacade userFacade;
 
   @RequestMapping(method = RequestMethod.POST)
-  public UserDTO login(@RequestBody Credentials credentials, HttpSession httpSession) {
-    UserDTO user = userFacade.getUserForLogin(credentials, httpSession);
+  public User login(@RequestBody Credentials credentials, HttpSession httpSession) {
+    User user = userFacade.login(credentials);
     if (user == null) {
       throw new AuthenticationCredentialsNotFoundException("User not found!");
     }
@@ -36,8 +35,8 @@ public class AuthenticationController {
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public UserDTO session(HttpSession session) {
-    return (UserDTO) session.getAttribute("user");
+  public User session(HttpSession session) {
+    return (User) session.getAttribute("user");
   }
 
   @RequestMapping(method = RequestMethod.DELETE)

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import react.controller.facade.UserFacade;
 import react.model.RegistrationForm;
 import react.model.user.Role;
+import react.model.user.User;
 import react.model.user.UserDTO;
 import react.utils.UserConverter;
 
@@ -19,7 +20,7 @@ public class UserController {
   private UserFacade facade;
 
   @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-  public UserDTO createUser(@RequestBody RegistrationForm registrationForm) {
+  public User createUser(@RequestBody RegistrationForm registrationForm) {
     return facade.createUser(registrationForm);
   }
 }

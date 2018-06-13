@@ -1,9 +1,6 @@
 package react.model.user;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import react.model.card.paycard.PayCard;
 import react.model.card.shopcard.LoyaltyCard;
 import react.model.shop.Shop;
@@ -13,11 +10,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
+@Data
 @Entity
+@NoArgsConstructor
 public class User implements Serializable {
   @Id
   @GeneratedValue
@@ -34,8 +29,7 @@ public class User implements Serializable {
   private Role role;
   @OneToMany(mappedBy = "user")
   private Collection<PayCard> payCards = new ArrayList<>();
-  @OneToMany(mappedBy = "user")
-  private Collection<LoyaltyCard> loyaltyCards = new ArrayList<>();
-  @ManyToMany(mappedBy = "users")
-  private Collection<Shop> shops = new ArrayList<>();
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "loyalty_card_id")
+  private LoyaltyCard loyaltyCard =  new LoyaltyCard() ;
 }

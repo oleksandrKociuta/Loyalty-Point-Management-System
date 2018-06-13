@@ -1,15 +1,15 @@
-package react.model.discont;
+package react.model.card;
 
 import lombok.Getter;
 
 @Getter
-public enum DiscountsStatus {
+public enum CardStatus {
 
   IN_PROGRES("In Progres"), EXPIRE("Expire");
 
   private String status;
 
-  DiscountsStatus(String status) {
+  CardStatus(String status) {
     this.status = status;
   }
 }

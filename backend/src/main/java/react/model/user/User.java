@@ -4,7 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import react.model.discont.Discount;
+import react.model.card.paycard.PayCard;
+import react.model.card.shopcard.LoyaltyCard;
 import react.model.shop.Shop;
 
 import javax.persistence.*;
@@ -32,21 +33,9 @@ public class User implements Serializable {
   @Enumerated(value = EnumType.STRING)
   private Role role;
   @OneToMany(mappedBy = "user")
-  private Collection<Discount> discounts = new ArrayList<>();
+  private Collection<PayCard> payCards = new ArrayList<>();
+  @OneToMany(mappedBy = "user")
+  private Collection<LoyaltyCard> loyaltyCards = new ArrayList<>();
   @ManyToMany(mappedBy = "users")
   private Collection<Shop> shops = new ArrayList<>();
-
-  public User(long id, String firstName, String lastName, String email, String username, String phone, String password,
-              Role role, Collection<Discount> discounts, Collection<Shop> shops) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.username = username;
-    this.phone = phone;
-    this.password = password;
-    this.role = role;
-    this.discounts = discounts;
-    this.shops = shops;
-  }
 }

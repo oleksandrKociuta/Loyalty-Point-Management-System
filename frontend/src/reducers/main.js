@@ -8,7 +8,7 @@ const initialState = {
 
 // Reducer
 
-export default function simpleReducer(state = initialState, action) {
+export default function mainReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_SUCCESS:
       return {

@@ -29,21 +29,21 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: action.result.data.authenticated,
-        username: action.result.data.userName,
+        user: action.result.data,
         errorMessage: null
       };
     case LOGIN_FAIL:
       return {
         ...state,
         isAuthenticated: false,
-        username: null,
+        user: null,
         errorMessage: action.error.data.messageKey
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
         isAuthenticated: false,
-        username: null
+        user: null
       };
     case GET_SESSION:
       return {
@@ -54,7 +54,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: action.result.data.authenticated || false,
-        username: action.result.data.userName,
+        user: action.result.data,
         errorMessage: null,
         loading: false
       };
@@ -62,7 +62,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: false,
-        username: null,
+        user: null,
         debugError: action.error,
         loading: false
       };

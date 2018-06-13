@@ -33,7 +33,9 @@ module.exports = {
     root: path.join(__dirname, 'src')
   },
   module: {
-    loaders: [{
+    loaders: [
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
       test: /\.js$/,
       loaders: ['babel?cacheDirectory'],
       include: path.join(__dirname, 'src')

@@ -28,6 +28,8 @@ public class AuthenticationController {
     if (user == null) {
       throw new AuthenticationCredentialsNotFoundException("User not found!");
     }
+    user.setAuthenticated(true);
+    user.setToken(httpSession.getId());
     httpSession.setAttribute("user", user);
     Authentication authentication = new UsernamePasswordAuthenticationToken(user, credentials);
     SecurityContextHolder.getContext().setAuthentication(authentication);

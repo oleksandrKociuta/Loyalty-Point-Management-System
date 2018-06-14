@@ -1,5 +1,6 @@
 package react.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import react.model.card.paycard.PayCard;
 import react.model.card.shopcard.LoyaltyCard;
@@ -9,10 +10,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Data
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
   @Id
   @GeneratedValue
@@ -27,9 +30,13 @@ public class User implements Serializable {
   private String password;
   @Enumerated(value = EnumType.STRING)
   private Role role;
-  @OneToMany(mappedBy = "user")
-  private Collection<PayCard> payCards = new ArrayList<>();
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "loyalty_card_id")
   private LoyaltyCard loyaltyCard =  new LoyaltyCard() ;
+
+  @Transient
+  private String token;
+
+  @Transient
+  private Boolean authenticated;
 }

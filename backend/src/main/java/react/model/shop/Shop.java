@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import react.model.product.Product;
-import react.model.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 
 @Setter
@@ -24,9 +23,7 @@ public class Shop implements Serializable {
   private String name;
   @Enumerated(value = EnumType.STRING)
   private ShopType type;
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "product_shop",
-    joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "shop_id", referencedColumnName = "id"))
-  private Collection<Product> products = new ArrayList<>();
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "shop_id", referencedColumnName = "id")
+  private List<Product> products = new ArrayList<>();
 }

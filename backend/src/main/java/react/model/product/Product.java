@@ -1,14 +1,13 @@
 package react.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import react.model.shop.Shop;
+import react.model.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,11 +15,12 @@ import java.util.Collection;
 @Getter
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
   @Id
   @GeneratedValue
   private long id;
   private double price;
-  @ManyToMany(mappedBy = "products")
-  private Collection<Shop> shops = new ArrayList<>();
+  @Column(name = "shop_id")
+  private int shopId;
 }

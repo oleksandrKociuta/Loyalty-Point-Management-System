@@ -23,7 +23,7 @@ setupAxiosInterceptors(() => actions.redirectToLoginWithMessage('login.error.una
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      {devTools}
+       {/*{devTools}*/}
       <Router history={history} routes={getRoutes(actions.logout)}/>
     </div>
   </Provider>,

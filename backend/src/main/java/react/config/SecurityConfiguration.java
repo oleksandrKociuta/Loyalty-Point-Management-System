@@ -23,6 +23,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/api/session").permitAll()
       .antMatchers("api/user/createUser").permitAll()
+      .antMatchers("api/payCard/*").authenticated()
+      .antMatchers("aps/shop/*").authenticated()
       .and()
       .requestCache()
       .requestCache(new NullRequestCache())

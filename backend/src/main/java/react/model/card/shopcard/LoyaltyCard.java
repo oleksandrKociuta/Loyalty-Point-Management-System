@@ -1,5 +1,6 @@
 package react.model.card.shopcard;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import react.model.card.CardStatus;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class LoyaltyCard implements Serializable {
   @Id
   @GeneratedValue

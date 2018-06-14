@@ -41,9 +41,8 @@ export function register(registrationForm) {
     types: [REGISTRATION, REGISTRATION_SUCCESS, REGISTRATION_FAIL],
     promise: (client) => client.post('api/user/createUser', registrationForm),
     afterSuccess: (dispatch, getState, response) => {
-      console.log(response, dispatch, getState);
-      const routingState = getState().routing.locationBeforeTransitions.state || {};
-      browserHistory.push(routingState.nextPathname || '');
+      const currentPath = getState().routing.locationBeforeTransitions.pathname;
+      browserHistory.replace({pathname: '/login', state: {nextPathname: currentPath}});
     }
   };
 }

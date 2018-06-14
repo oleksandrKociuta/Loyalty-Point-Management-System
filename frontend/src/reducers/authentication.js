@@ -89,8 +89,7 @@ export function login(username, password) {
     afterSuccess: (dispatch, getState, response) => {
       localStorage.setItem('auth-token', response.headers['x-auth-token']);
       const currentPath = getState().routing.locationBeforeTransitions.pathname;
-      console.log(currentPath);
-      browserHistory.replace({pathname: '/mainPage', state: {nextPathname: currentPath}});
+      browserHistory.replace({pathname: '/', state: {nextPathname: currentPath}});
     }
   };
 }

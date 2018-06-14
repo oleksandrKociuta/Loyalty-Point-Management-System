@@ -7,5 +7,5 @@ import react.model.user.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-  User findUserByusernameAndPassword(String username, String password);
+  User findUserByUsernameAndPassword(String username, String password);
 }

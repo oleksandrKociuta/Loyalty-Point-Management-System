@@ -2,7 +2,6 @@ package react.repository.dao.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class UserDAOImpl implements UserDAO {
 
   @Override
   public User createUser(User user) {
-    User saveUser = null;
+    User saveUser;
     try {
       saveUser = repository.save(user);
     } catch (DataIntegrityViolationException e) {
@@ -30,6 +29,6 @@ public class UserDAOImpl implements UserDAO {
 
   @Override
   public User getUserByUsername(String username, String password) {
-    return repository.findUserByusernameAndPassword(username, password);
+    return repository.findUserByUsernameAndPassword(username, password);
   }
 }

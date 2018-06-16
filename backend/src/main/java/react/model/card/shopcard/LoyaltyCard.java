@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import react.model.card.CardStatus;
+import react.model.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,4 +23,5 @@ public class LoyaltyCard implements Serializable {
   @Enumerated(value = EnumType.STRING)
   private LoyaltyPointInterestRate interestRate = LoyaltyPointInterestRate.FIVE_PERCENTS;
   private BigDecimal totalSum = new BigDecimal(0);
+  private BigDecimal bonuses = new BigDecimal(0);
 }

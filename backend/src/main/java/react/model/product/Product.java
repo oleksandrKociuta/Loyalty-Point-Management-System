@@ -8,8 +8,6 @@ import react.model.shop.Shop;
 import react.model.user.User;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Setter
 @Getter
@@ -21,6 +19,13 @@ public class Product {
   @GeneratedValue
   private long id;
   private double price;
-  @Column(name = "shop_id")
-  private int shopId;
+  private String name;
+  @Enumerated(value = EnumType.STRING)
+  private ProductStatus status = ProductStatus.NEW;
+  @Enumerated(value = EnumType.STRING)
+  private ProductType type;
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Shop shop;
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private User user;
 }

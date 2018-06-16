@@ -6,6 +6,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import {reducer as modal} from 'redux-modal';
 import paycards from './paycards';
 import shop from './shop';
+import products from './products';
 
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   routing,
   modal,
   paycards,
-  shop
+  shop,
+  products
 });

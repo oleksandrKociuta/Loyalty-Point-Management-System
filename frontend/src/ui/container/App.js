@@ -21,7 +21,8 @@ export class App extends Component {
         <div id="application">
           {
             !this.props.isAuthenticated ?
-          [<LoginPage/>, <RegistrationPage/>] :
+          [<LoginPage/>,
+          <RegistrationPage/>] :
               <MainPage {...this.props}/>
           }
         </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PayCardModal from '../../modal/PayCardModal';
 import ShopModal from '../../modal/ShopModal';
+import ProductModal from '../../modal/ProductModal';
 import {Navbar, NavItem, Nav} from 'react-bootstrap';
 
 
@@ -24,7 +25,7 @@ export default class PageHeader extends Component {
           </Nav>
           <Nav>
             <NavItem eventKey={4} href="/shop">
-              Магазини і товари
+              Магазини
             </NavItem>
           </Nav>
           <Nav pullRight>
@@ -35,6 +36,7 @@ export default class PageHeader extends Component {
         </Navbar>
         <PayCardModal/>
         <ShopModal/>
+        <ProductModal/>
       </div>
     );
 

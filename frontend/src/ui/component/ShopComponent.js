@@ -5,12 +5,17 @@ import {show} from 'redux-modal';
 import {Button} from 'react-bootstrap';
 import ReactTable from 'react-table';
 import {getAllShops, deleteShop} from "../../reducers/shop";
+import {getAllProducts, deleteProduct} from "../../reducers/products";
 
 
 class ShopComponent extends Component {
 
   openShopModal(id) {
     this.props.show("SHOP_MODAL", {id});
+  }
+
+  openProductModal(id) {
+    this.props.show("PRODUCT_MODAL", {id});
   }
 
   componentWillMount() {
@@ -40,14 +45,13 @@ class ShopComponent extends Component {
         accessor: (b) => b,
         Cell: (row) =>
           <div>
-            <Button onClick={() => this.openShopModal(row.value.id)}>
-              Глянути товар
+            <Button onClick={() => this.openProductModal(row.value.id)}>
+              Додати товар
             </Button>
             <Button onClick={() => this.props.deleteShop(row.value.id)}>
               Видалити
             </Button>
           </div>
-
       }
     ];
   }
@@ -84,7 +88,6 @@ class ShopComponent extends Component {
 }
 
 export default connect(
-  state => ({shop: state.shop}),
-  dispatch => bindActionCreators({getAllShops, deleteShop, show}, dispatch)
-)
-(ShopComponent);
+  state => ({shop: state.shop, product: state.product}),
+  dispatch => bindActionCreators({getAllShops, deleteShop, getAllProducts, deleteProduct, show}, dispatch)
+)(ShopComponent);

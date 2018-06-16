@@ -5,11 +5,11 @@ import lombok.Getter;
 @Getter
 public enum ProductType {
 
-  FOOD("Food"), CLOTHES("Clothes");
+  TRAINERS("Кросівки"), SPORT_SUITE("Спортивний костюм"), CUP("Кепка"), SOCCER_BALL("Футбольний м'яч");
 
-  private String status;
+  private String type;
 
-  ProductType(String status) {
-    this.status = status;
+  ProductType(String type) {
+    this.type = type;
   }
 }

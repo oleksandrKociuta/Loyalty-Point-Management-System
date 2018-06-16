@@ -59,7 +59,7 @@ class CreateEditShop extends Component {
           <div className='create-edit-procedure'>
             <form onSubmit={this.handleSubmit}>
               <label>
-                Ім'я:
+                Назва:
                 <input type="text" name='name' value={shop.name}
                     onChange={this.handleChange}/>
               </label>

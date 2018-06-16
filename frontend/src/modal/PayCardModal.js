@@ -62,7 +62,7 @@ class CreatePayCard extends Component {
             <form onSubmit={this.handleSubmit}>
               <label>
                 Баланс : 
-                <input type='text' min='10' name='balance' maxLength='8' value={this.state['balance']}
+                <input type='text' min='50' name='balance' maxLength='8' value={this.state['balance']}
                        onChange={this.handleChange}/>
               </label>
             </form>

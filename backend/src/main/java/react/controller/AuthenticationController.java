@@ -15,7 +15,7 @@ import react.model.user.User;
 
 import javax.servlet.http.HttpSession;
 
-@RestController()
+@RestController
 @RequestMapping("/session")
 public class AuthenticationController {
 

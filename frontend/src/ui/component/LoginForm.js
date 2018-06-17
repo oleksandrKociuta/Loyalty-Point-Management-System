@@ -37,7 +37,7 @@ export default class LoginForm extends Component {
     const { errorMessage } = this.props;
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage} /> : null;
     return (
-      <div className="form-container">
+      <div className="form-container login-registration">
         <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned unauthorized-form">
           <h1>{messages.login.title}</h1>
           {errorPanel}

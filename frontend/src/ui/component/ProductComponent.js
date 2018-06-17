@@ -24,7 +24,7 @@ class ProductComponent extends Component {
       {
         Header: 'Id',
         id: 'id',
-        accessor: 'favorites.color'
+        accessor: 'id'
       },
       {
         Header: 'Ім\'я',
@@ -85,7 +85,6 @@ class ProductComponent extends Component {
           columns={this.getColumns()}
           defaultPageSize={10}
           className="-striped -highlight"
-          /* column={{className: }} */
           defaultSorted={[
             {
               id: "id",

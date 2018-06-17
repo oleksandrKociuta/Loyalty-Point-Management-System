@@ -49,7 +49,7 @@ export default class RegistrationForm extends Component {
     const {errorMessage} = this.state; 
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
-      <div className="form-container">
+      <div className="form-container login-registration">
 
         <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned unauthorized-form">
           <h1>{messages.registration.title}</h1>

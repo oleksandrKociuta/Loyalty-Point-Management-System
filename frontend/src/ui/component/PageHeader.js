@@ -3,7 +3,7 @@ import PayCardModal from '../../modal/PayCardModal';
 import ShopModal from '../../modal/ShopModal';
 import ProductModal from '../../modal/ProductModal';
 import {Navbar, NavItem, Nav} from 'react-bootstrap';
-
+import { Link } from 'react-router';
 
 
 export default class PageHeader extends Component {
@@ -15,27 +15,27 @@ export default class PageHeader extends Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">Головна Сторінка</a>
+              <Link to="/">Головна Сторінка</Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="/mainPage">
-              Мій кабінет
+            <NavItem eventKey={1}>
+              <Link to="/mainPage">Мій кабінет</Link>
             </NavItem>
           </Nav>
           <Nav>
-            <NavItem eventKey={2} href="/shop">
-              Магазини
+            <NavItem eventKey={2}>
+              <Link to="/shop">Магазини</Link>
             </NavItem>
           </Nav>
           <Nav>
-            <NavItem eventKey={3} href="/product">
-               Продукція
+            <NavItem eventKey={3}>
+               <Link to="/product">Продукція</Link>
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={4} href="/logout">
-              Logout
+            <NavItem eventKey={4}>
+              <Link to="/logout">Logout</Link>
             </NavItem>
           </Nav>
         </Navbar>

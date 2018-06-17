@@ -1,10 +1,12 @@
-package react.repository.dao;
+package react.service;
 
 import react.model.shop.Shop;
 
 import java.util.List;
 
-public interface ShopDAO {
+public interface ShopService {
+
+  Shop getByShopId(long shopId);
 
   Shop saveShop(Shop shop);
 

@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 export default class MainComponent extends Component {
 
   openPayCardModal(id) {
-    this.props.show("PAYCARD_MODAL", {id});
+    this.props.show("PAYCARD_MODAL", { id });
   }
 
   componentDidMount() {
@@ -20,66 +20,109 @@ export default class MainComponent extends Component {
 
     return (
       <div>
-        <div>
-        <h1>User information:</h1>
-        <p>Login: {user.username}</p>
-        <p>Email: {user.email}</p>
-        <p>First name: {user.firstName}</p>
-        <p>Last name: {user.lastName}</p>
-        <p>Phone: {user.phone}</p>
-        <p>Role: {user.role}</p>
+        <div className="cards-container">
+          <div className="panel panel-primary cabinet-card">
+            <div className="panel-heading">
+              <h4>User information:</h4>
+            </div>
+            <table className="table card-table">
+              <tbody>
+                <tr>
+                  <td>Login:</td>
+                  <td>{user.username}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{user.email}</td>
+                </tr>
+                <tr>
+                  <td>First name:</td>
+                  <td>{user.firstName}</td>
+                </tr>
+                <tr>
+                  <td>Last name:</td>
+                  <td>{user.lastName}</td>
+                </tr>
+                <tr>
+                  <td>Phone:</td>
+                  <td>{user.phone}</td>
+                </tr>
+                <tr>
+                  <td>Role:</td>
+                  <td>{user.role}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="panel panel-warning cabinet-card">
+            <div className="panel-heading">
+              <h4>Loyalty card information:</h4>
+            </div>
+            <table className="table card-table">
+              <tbody>
+                <tr>
+                  <td>Status:</td>
+                  <td>{loyaltyCard.status}</td>
+                </tr>
+                <tr>
+                  <td>Inerest Rate:</td>
+                  <td>{loyaltyCard.interestRate}</td>
+                </tr>
+                <tr>
+                  <td>Total sum of payments:</td>
+                  <td>{loyaltyCard.totalSum}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div>
-        <h1>Loyalty card information:</h1>
-        <p>Status: {loyaltyCard.status}</p>
-        <p>Inerest Rate: {loyaltyCard.interestRate}</p>
-        <p>Total sum of payments: {loyaltyCard.totalSum}</p>
-        </div>
-
-        <div>
-        <h1>Pay cards info:</h1>
-        <Button onClick={() => this.openPayCardModal()}>
-          Добавити нову карточку
-        </Button>
-        <ReactTable
-          data={payCards}
-          columns={this.getColumns()}
-          defaultPageSize={5}
-          className="-striped -highlight"
-          defaultSorted={[
-            {
-              id: "id",
-              desc: true
-            }
-          ]}
-        />
-        <Button onClick={this.props.getPayCards}>
-          Оновити картки
-        </Button>
+        <div className="panel panel-success">
+          <div className="panel-heading">
+            <h3>Pay cards info:</h3>
+            <Button onClick={() => this.openPayCardModal()}>
+              Добавити нову карточку
+          </Button>
+            <Button onClick={this.props.getPayCards}>
+              <span className="glyphicon glyphicon-repeat"></span>
+            </Button>
+          </div>
+          <ReactTable
+            data={payCards}
+            columns={this.getColumns()}
+            defaultPageSize={5}
+            className="-striped -highlight"
+            defaultSorted={[
+              {
+                id: "id",
+                desc: true
+              }
+            ]}
+          />
         </div>
       </div>
-  
-      );
-    }
 
-    getColumns() {
-      return [
-        {
-          Header: 'Id',
-          id: 'id',
-          accessor: 'id'
-        },
-        {
-          Header: 'Статус',
-          id: 'status',
-          accessor: 'status'
-        },
-        {
-          Header: 'Баланс',
-          id: 'balance',
-          accessor: (b) => b.balance + ' грн'
-        }
-      ];
-    }
+    );
+  }
+
+  getColumns() {
+    return [
+      {
+        Header: 'Id',
+        id: 'id',
+        accessor: 'id'
+      },
+      {
+        Header: 'Статус',
+        id: 'status',
+        accessor: 'status'
+      },
+      {
+        Header: 'Баланс',
+        id: 'balance',
+        accessor: (b) => b.balance + ' грн'
+      }
+    ];
+  }
 }

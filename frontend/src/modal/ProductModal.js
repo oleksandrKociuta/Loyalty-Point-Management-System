@@ -38,10 +38,11 @@ class CreateEditProduct extends Component {
 
   onSubmit() {
     let product = this.state;
+    let shopId = this.props.id;
     if (product.id) {
       this.props.editProduct(product);
     } else {
-      this.props.createProduct(product);
+      this.props.createProduct(product, shopId);
     }
     this.props.handleHide();
   }
@@ -76,7 +77,7 @@ class CreateEditProduct extends Component {
                 Ціна:
                 </label>
                 <div>
-                <input type="text" min='50' name='name' maxLength='8' value={product.name}
+                <input type="number" min='50' name='price' value={product.price}
                     onChange={this.handleChange}/> грн.
                     </div>
             </form>

@@ -7,10 +7,6 @@ export default class WelcomePage extends Component {
 
     return (
       <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <Panel.Heading componentClass="h1">Програма лояльності "В формі".</Panel.Heading>
         <Panel.Body componentClass="h2">Дана програма розроблена для спортивних торгових марок : Nike, Puma, Adidas</Panel.Body>
         <Carousel>

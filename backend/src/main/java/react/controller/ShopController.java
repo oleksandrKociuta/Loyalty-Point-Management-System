@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import react.model.shop.Shop;
 import react.model.shop.ShopType;
-import react.repository.dao.ShopDAO;
+import react.service.ShopService;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class ShopController {
 
   @Autowired
-  private ShopDAO dao;
+  private ShopService dao;
 
   @RequestMapping(method = RequestMethod.PUT)
   public Shop createShop(@RequestBody Map<String, String> attrs) {

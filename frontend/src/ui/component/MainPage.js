@@ -14,7 +14,6 @@ export default class MainPage extends Component {
             <WelcomePage/> :
             this.props.children
         }
-
       </div>
     );
   }

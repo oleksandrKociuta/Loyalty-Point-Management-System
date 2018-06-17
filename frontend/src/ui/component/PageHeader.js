@@ -11,7 +11,7 @@ export default class PageHeader extends Component {
 
   render() {
     return (
-      <div>
+      <div className="appHeader">
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
@@ -24,12 +24,17 @@ export default class PageHeader extends Component {
             </NavItem>
           </Nav>
           <Nav>
-            <NavItem eventKey={4} href="/shop">
+            <NavItem eventKey={2} href="/shop">
               Магазини
             </NavItem>
           </Nav>
+          <Nav>
+            <NavItem eventKey={3} href="/product">
+               Продукція
+            </NavItem>
+          </Nav>
           <Nav pullRight>
-            <NavItem eventKey={3} href="/logout">
+            <NavItem eventKey={4} href="/logout">
               Logout
             </NavItem>
           </Nav>

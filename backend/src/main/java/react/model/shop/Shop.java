@@ -1,8 +1,9 @@
 package react.model.shop;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.ToString;
 import react.model.product.Product;
 
 import javax.persistence.*;
@@ -11,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
+@ToString(exclude = {"products"})
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Shop implements Serializable {
   @Id
   @GeneratedValue
@@ -23,7 +24,7 @@ public class Shop implements Serializable {
   private String name;
   @Enumerated(value = EnumType.STRING)
   private ShopType type;
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "shop_id", referencedColumnName = "id")
+  @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonManagedReference
   private List<Product> products = new ArrayList<>();
 }

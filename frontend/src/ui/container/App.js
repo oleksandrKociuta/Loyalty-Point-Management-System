@@ -9,10 +9,20 @@ import RegistrationPage from "./RegistrationPage";
 import 'stylus/main.styl';
 
 export class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      register: false,
+    }
+  }
   
     componentDidMount() {
       if (this.props.location.pathname !== '/logout')
         this.props.getSession();
+    }
+
+    getUnauthorizedPage() {
+      return this.state.register ? <RegistrationPage switchToLogin={()=>this.setState({register: false})}/> : <LoginPage switchToRegistration={()=>this.setState({register: true})}/>;
     }
   
     render() {
@@ -20,11 +30,11 @@ export class App extends Component {
       return (
         <div id="application">
           {
-            !this.props.isAuthenticated ?
-          [<LoginPage/>,
-          <RegistrationPage/>] :
-              <MainPage {...this.props}/>
+          !this.props.isAuthenticated
+          ? this.getUnauthorizedPage() 
+          : <MainPage {...this.props}/>
           }
+          
         </div>
       );
     }

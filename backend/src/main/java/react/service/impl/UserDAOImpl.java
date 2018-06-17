@@ -1,4 +1,4 @@
-package react.repository.dao.impl;
+package react.service.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -7,7 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import react.model.user.User;
 import react.repository.UserRepository;
-import react.repository.dao.UserDAO;
+import react.service.UserDAO;
 
 @Service
 public class UserDAOImpl implements UserDAO {

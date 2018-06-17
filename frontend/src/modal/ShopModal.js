@@ -57,19 +57,19 @@ class CreateEditShop extends Component {
         </Modal.Header>
         <Modal.Body>
           <div className='create-edit-procedure'>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="form-container">
               <label>
                 Назва:
+                </label>
                 <input type="text" name='name' value={shop.name}
                     onChange={this.handleChange}/>
-              </label>
-              <label> Тип Магазину
+              <label> 
+                  Тип Магазину
+                  </label>
                 <select value={shop.type} name='type' onChange={this.handleChange}>
                     <option value=''>Виберіть тип</option>
-                    <option value='SPORT'>Sport</option>
-                    <option value='ONLINE'>Online</option>
+                    <option value='SPORT'>Спортивний</option>
                 </select>
-              </label>
             </form>
           </div>
         </Modal.Body>

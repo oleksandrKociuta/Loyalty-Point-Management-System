@@ -1,10 +1,10 @@
-package react.repository.dao.impl;
+package react.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import react.model.card.paycard.PayCard;
 import react.repository.PayCardRepository;
-import react.repository.dao.PayCardDAO;
+import react.service.PayCardDAO;
 
 import java.util.List;
 

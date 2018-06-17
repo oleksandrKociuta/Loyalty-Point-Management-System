@@ -1,4 +1,4 @@
-package react.controller.facade;
+package react.facade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import react.model.Credentials;
 import react.model.RegistrationForm;
 import react.model.user.Role;
 import react.model.user.User;
-import react.repository.dao.UserDAO;
+import react.service.UserDAO;
 import react.utils.UserConverter;
 
 @Component

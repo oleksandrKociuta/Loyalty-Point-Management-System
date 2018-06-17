@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {show} from 'redux-modal';
-import {Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { show } from 'redux-modal';
+import { Button } from 'react-bootstrap';
 import ReactTable from 'react-table';
-import {getAllShops, deleteShop} from "../../reducers/shop";
-import {getAllProducts, deleteProduct} from "../../reducers/products";
+import { getAllShops, deleteShop } from "../../reducers/shop";
+import { getAllProducts, deleteProduct } from "../../reducers/products";
 
 
 class ShopComponent extends Component {
 
   openShopModal(id) {
-    this.props.show("SHOP_MODAL", {id});
+    this.props.show("SHOP_MODAL", { id });
   }
 
   openProductModal(id) {
-    this.props.show("PRODUCT_MODAL", {id});
+    this.props.show("PRODUCT_MODAL", { id });
   }
 
   componentWillMount() {
@@ -60,11 +60,16 @@ class ShopComponent extends Component {
     let items = this.props.shop.shops || [];
 
     return (
-      <div>
-        <h2>Procedures Data:</h2>
-        <Button onClick={() => this.openShopModal()}>
-          Додати новий магазин
+      <div className="panel panel-success shop-panel">
+        <div className="panel-heading">
+          <h3>Procedures Data:</h3>
+          <Button onClick={() => this.openShopModal()}>
+            Додати новий магазин
         </Button>
+          <Button onClick={this.props.getAllShops}>
+            <span className="glyphicon glyphicon-repeat"></span>
+          </Button>
+        </div>
         <ReactTable
           data={items}
           columns={this.getColumns()}
@@ -77,9 +82,6 @@ class ShopComponent extends Component {
             }
           ]}
         />
-        <Button onClick={this.props.getAllShops}>
-          Оновити таблицю
-        </Button>
 
 
       </div>
@@ -88,6 +90,6 @@ class ShopComponent extends Component {
 }
 
 export default connect(
-  state => ({shop: state.shop, product: state.product}),
-  dispatch => bindActionCreators({getAllShops, deleteShop, getAllProducts, deleteProduct, show}, dispatch)
+  state => ({ shop: state.shop, product: state.product }),
+  dispatch => bindActionCreators({ getAllShops, deleteShop, getAllProducts, deleteProduct, show }, dispatch)
 )(ShopComponent);

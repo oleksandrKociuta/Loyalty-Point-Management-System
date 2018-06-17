@@ -49,11 +49,11 @@ export default class RegistrationForm extends Component {
     const {errorMessage} = this.state; 
     const errorPanel = errorMessage ? <ErrorPanel messageKey={errorMessage}/> : null;
     return (
-      <div>
-        <h1>{messages.registration.title}</h1>
-        {errorPanel}
+      <div className="form-container">
 
-        <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned">
+        <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned unauthorized-form">
+          <h1>{messages.registration.title}</h1>
+          {errorPanel}
           <LabeledInput onChange={this.handleInputChange} label="First name" name="firstName"/>
           <LabeledInput onChange={this.handleInputChange} label="Last name" name="lastName"/>
           <LabeledInput onChange={this.handleInputChange} label="Email" name="email"/>
@@ -61,8 +61,9 @@ export default class RegistrationForm extends Component {
           <LabeledInput onChange={this.handleInputChange} label="Phone" name="phone"/>
           <LabeledInput onChange={this.handleInputChange} label="Enter Password" name="password1" type="password"/>
           <LabeledInput onChange={this.handleInputChange} label="Re-enter Password" name="password2" type="password"/>
-          <div className="pure-controls">
-            <button type="submit" className="pure-button pure-button-primary">Registrate</button>
+          <div className="pure-controls unauthorized-buttons">
+            <button type="submit" className="pure-button pure-button-primary unauthorized-buttons">Registrate</button>
+            <button onClick={()=>this.props.switchToLogin()} className="pure-button pure-button-primary">Login form</button>
           </div>
         </form>
       </div>

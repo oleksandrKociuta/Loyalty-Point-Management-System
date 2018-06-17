@@ -1,9 +1,9 @@
-package react.repository.dao.impl;
+package react.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import react.model.card.shopcard.LoyaltyCard;
 import react.repository.LoyaltyCardRepository;
-import react.repository.dao.LoyaltyCardDao;
+import react.service.LoyaltyCardDao;
 
 public class LoyaltyCardDAOimpl implements LoyaltyCardDao {
 

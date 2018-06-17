@@ -17,7 +17,7 @@ const CLEAR_CURRENT = 'product/CLEAR_CURRENT_ITEM';
 const CHANGE_PROPS = 'product/CHANGE_PROPS';
 
 const initialState = {
-    products: [],
+  products: [],
   currentProduct: {}
 };
 
@@ -70,7 +70,14 @@ export default function productReducer(state = initialState, action) {
 export function getAllProducts() {
   return {
     types: [GET_ALL, GET_ALL_SUCCESS, GET_ALL_FAIL],
-    promise: client => client.get('/api/product')
+    promise: client => client.get('/api/product/all')
+  };
+}
+
+export function getAllProductsByShopId(shopId) {
+  return {
+    types: [GET_ALL, GET_ALL_SUCCESS, GET_ALL_FAIL],
+    promise: client => client.get('/api/product/' + shopId)
   };
 }
 
@@ -81,10 +88,10 @@ export function getProduct(id) {
   };
 }
 
-export function createProduct(product) {
+export function createProduct(product, shopId) {
   return {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
-    promise: client => client.put('/api/product', product)
+    promise: client => client.put('/api/product/' + shopId, product)
   };
 }
 

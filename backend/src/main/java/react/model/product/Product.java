@@ -1,17 +1,14 @@
 package react.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import react.model.shop.Shop;
 import react.model.user.User;
 
 import javax.persistence.*;
 
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
@@ -25,7 +22,9 @@ public class Product {
   @Enumerated(value = EnumType.STRING)
   private ProductType type;
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Shop shop;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private User user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "shop_id", nullable = false)
+  @JsonBackReference
+  private Shop shop;
 }

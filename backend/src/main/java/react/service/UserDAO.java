@@ -1,4 +1,4 @@
-package react.repository.dao;
+package react.service;
 
 import react.model.user.User;
 

@@ -1,18 +1,23 @@
-package react.repository.dao.impl;
+package react.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import react.model.shop.Shop;
 import react.repository.ShopRepository;
-import react.repository.dao.ShopDAO;
+import react.service.ShopService;
 
 import java.util.List;
 
 @Service
-public class ShopDAOImpl implements ShopDAO {
+public class ShopServiceImpl implements ShopService {
 
   @Autowired
   private ShopRepository shopRepository;
+
+  @Override
+  public Shop getByShopId(long shopId) {
+    return shopRepository.findOne(shopId);
+  }
 
   @Override
   public Shop saveShop(Shop shop) {

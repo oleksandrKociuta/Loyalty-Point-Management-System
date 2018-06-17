@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PayCardModal from '../../modal/PayCardModal';
 import ShopModal from '../../modal/ShopModal';
 import ProductModal from '../../modal/ProductModal';
+import BuyProductModal from '../../modal/BuyProductModal';
 import {Navbar, NavItem, Nav} from 'react-bootstrap';
 import { Link } from 'react-router';
 
@@ -42,6 +43,7 @@ export default class PageHeader extends Component {
         <PayCardModal/>
         <ShopModal/>
         <ProductModal/>
+        <BuyProductModal/>
       </div>
     );
 

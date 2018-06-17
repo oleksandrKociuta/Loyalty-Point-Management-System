@@ -10,8 +10,8 @@ import { getAllProductsByShopId, getAllProducts, deleteProduct, changeProps } fr
 
 class ProductComponent extends Component {
 
-  openProductModal(id) {
-    this.props.show("PRODUCT_MODAL", { id });
+  openProductModal(product) {
+    this.props.show("BUY_PRODUCT_MODAL", {product});
   }
 
   componentWillMount() {
@@ -47,7 +47,7 @@ class ProductComponent extends Component {
         accessor: (b) => b,
         Cell: (row) =>
           <div>
-            <Button onClick={() => this.openProductModal(row.value.id)}>
+            <Button onClick={() => this.openProductModal({id:row.value.id, name:row.value.name, type:row.value.type, price:row.value.price})}>
               Купити товар
             </Button>
             <Button onClick={() => this.props.deleteProduct(row.value.id)}>

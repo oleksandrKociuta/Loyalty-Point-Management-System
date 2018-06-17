@@ -82,8 +82,6 @@ class ShopComponent extends Component {
             }
           ]}
         />
-
-
       </div>
     );
   }

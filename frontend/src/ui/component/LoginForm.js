@@ -41,12 +41,12 @@ export default class LoginForm extends Component {
         <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned unauthorized-form">
           <h1>{messages.login.title}</h1>
           {errorPanel}
-          <LabeledInput onChange={this.handleInputChange} label="Login" name="username" />
-          <LabeledInput onChange={this.handleInputChange} label="Password" name="password" type="password" />
+          <LabeledInput onChange={this.handleInputChange} label="Логін" name="username" />
+          <LabeledInput onChange={this.handleInputChange} label="Пароль" name="password" type="password" />
 
           <div className="pure-controls">
-            <button type="submit" className="pure-button pure-button-primary unauthorized-buttons">Login</button>
-            <button onClick={() => this.props.switchToRegistration()} className="pure-button pure-button-primary">Registration form</button>
+            <button type="submit" className="pure-button pure-button-primary unauthorized-buttons">Залогінитися</button>
+            <button onClick={() => this.props.switchToRegistration()} className="pure-button pure-button-primary">Реєстрація</button>
           </div>
         </form>
       </div>

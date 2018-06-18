@@ -15,6 +15,9 @@ const EDIT_SUCCESS = 'product/EDIT_SUCCESS';
 const EDIT_FAIL = 'product/EDIT_FAIL';
 const CLEAR_CURRENT = 'product/CLEAR_CURRENT_ITEM';
 const CHANGE_PROPS = 'product/CHANGE_PROPS';
+const BUY = 'product/BUY';
+const BUY_SUCCESS = 'product/BUY_SUCCESS';
+const BUY_FAIL = 'product/BUY_FAIL';
 
 const initialState = {
   products: [],
@@ -60,6 +63,11 @@ export default function productReducer(state = initialState, action) {
         ...state,
         currentProduct: {...state.currentProduct, [action.payload.name]: action.payload.value}
       };
+    case BUY_SUCCESS:
+    return {
+      ...state,
+      products: [...state.products, action.result.data]
+    }
     default:
       return state;
   }

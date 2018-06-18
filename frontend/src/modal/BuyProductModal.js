@@ -5,6 +5,9 @@ import {createProduct, getProduct, clearCurrentProduct, editProduct, changeProps
 import {Modal, Button} from 'react-bootstrap';
 import Switcher from 'react-switcher';
 import ReactTable from 'react-table';
+import { bindActionCreators } from 'redux';
+import {getPayCards, deletePayCard} from "../reducers/paycards";
+import constants from "../../assets/constants/constants";
 
 class BuyProduct extends Component {
 
@@ -27,12 +30,14 @@ class BuyProduct extends Component {
     if (this.props.id) {
       this.props.getProduct(this.props.id);
     }
+    this.props.getPayCards();
   }
 
   componentWillUnmount() {
     this.props.clearCurrentProduct();
     this.unsubscribe();
   }
+
 
   handleChange(event) {
     this.props.changeProps(event.target.name, event.target.value)
@@ -49,7 +54,7 @@ class BuyProduct extends Component {
     this.props.handleHide();
   }
 
-  getColumns() {
+  getPayCardColumns() {
     return [
       {
         Header: 'Id',
@@ -57,19 +62,14 @@ class BuyProduct extends Component {
         accessor: 'id'
       },
       {
-        Header: 'Ім\'я',
-        id: 'name',
-        accessor: 'name'
+        Header: 'Статус',
+        id: 'status',
+        accessor: (b) => constants.Loyalty.Status[b.status]
       },
       {
-        Header: 'Тип',
-        id: 'type',
-        accessor: 'type'
-      },
-      {
-        Header: 'Ціна',
-        id: 'price',
-        accessor: (b) => b.price + ' грн'
+        Header: 'Баланс',
+        id: 'balance',
+        accessor: (b) => b.balance + ' грн'
       },
       {
         Header: 'дії',
@@ -78,10 +78,48 @@ class BuyProduct extends Component {
         Cell: (row) =>
           <div>
             <Button onClick={() => this.openProductModal({id:row.value.id, name:row.value.name, type:row.value.type, price:row.value.price})}>
-              Купити товар
+              Придбати
             </Button>
-            <Button onClick={() => this.props.deleteProduct(row.value.id)}>
-              <span className="glyphicon glyphicon-minus"></span>
+          </div>
+      }
+    ];
+  }
+
+  getLoyaltyCardColumns() {
+    return [
+      {
+        Header: 'Id',
+        id: 'id',
+        accessor: 'id'
+      },
+      {
+        Header: 'Статус',
+        id: 'status',
+        accessor: (b) => constants.Loyalty.Status[b.status]
+      },
+      {
+        Header: 'Нарахування',
+        id: 'interestRate',
+        accessor: (b) => constants.Loyalty.Rate[b.interestRate]
+      },
+      {
+        Header: 'Сума',
+        id: 'totalSum',
+        accessor: (b) => b.totalSum + ' грн'
+      },
+      {
+        Header: 'Бонуси',
+        id: 'bonuses',
+        accessor: 'bonuses'
+      },
+      {
+        Header: 'дії',
+        id: 'actions',
+        accessor: (b) => b,
+        Cell: (row) =>
+          <div>
+            <Button onClick={() => this.openProductModal({id:row.value.id, name:row.value.name, type:row.value.type, price:row.value.price})}>
+              Придбати
             </Button>
           </div>
       }
@@ -91,7 +129,8 @@ class BuyProduct extends Component {
   render() {
     const {show, handleHide} = this.props;
     let product = this.props.product || {};
-    let items = [];
+    let items = this.state.isLoyaltyCard ? [].concat(this.props.authentication.user.loyaltyCard) : this.props.paycards.items;
+    items = items ? items : [];
     return (
       <Modal show={show}>
         <Modal.Header>
@@ -115,11 +154,11 @@ class BuyProduct extends Component {
               </tr>
               <tr>
                 <td>Тип:</td>
-                <td>{product.type}</td>
+                <td>{constants.Product.Type[product.type]}</td>
               </tr>
               <tr>
                 <td>Ціна:</td>
-                <td>{product.price}</td>
+                <td>{product.price} грн</td>
               </tr>
             </tbody>
           </table>
@@ -141,7 +180,7 @@ class BuyProduct extends Component {
         </div>
         <ReactTable
           data={items}
-          columns={this.getColumns()}
+          columns={this.state.isLoyaltyCard ? this.getLoyaltyCardColumns() : this.getPayCardColumns()}
           defaultPageSize={5}
           className="-striped -highlight"
           defaultSorted={[
@@ -155,7 +194,6 @@ class BuyProduct extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleHide}>Закрити</Button>
-          <Button onClick={this.onSubmit}>Купити</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -164,9 +202,8 @@ class BuyProduct extends Component {
 
 export default connectModal({name: 'BUY_PRODUCT_MODAL'})(
   connect(
-    null,
-    // state => {user: state.shop},
-    {createProduct, getProduct, clearCurrentProduct, editProduct, changeProps}
+    state => ({authentication: state.authentication, paycards: state.paycards}),
+    dispatch => bindActionCreators({createProduct, getProduct, clearCurrentProduct, editProduct, changeProps, getPayCards, deletePayCard}, dispatch)
   )(BuyProduct));
 
   BuyProduct.contextTypes = {

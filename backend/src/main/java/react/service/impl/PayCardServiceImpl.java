@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import react.model.card.paycard.PayCard;
 import react.repository.PayCardRepository;
-import react.service.PayCardDAO;
+import react.service.PayCardService;
 
 import java.util.List;
 
 @Service
-public class PayCardDAOimpl implements PayCardDAO {
+public class PayCardServiceImpl implements PayCardService {
 
   @Autowired
   private PayCardRepository repository;

@@ -36,7 +36,7 @@ export default class PageHeader extends Component {
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={4}>
-              <Link to="/logout">Logout</Link>
+              <Link to="/logout">Вихід</Link>
             </NavItem>
           </Nav>
         </Navbar>

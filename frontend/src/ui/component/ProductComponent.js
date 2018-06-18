@@ -6,6 +6,8 @@ import { Button } from 'react-bootstrap';
 import ReactTable from 'react-table';
 import { getAllShops, deleteShop } from "../../reducers/shop";
 import { getAllProductsByShopId, getAllProducts, deleteProduct, changeProps } from "../../reducers/products";
+import constants from "../../../assets/constants/constants";
+
 
 
 class ProductComponent extends Component {
@@ -34,7 +36,7 @@ class ProductComponent extends Component {
       {
         Header: 'Тип',
         id: 'type',
-        accessor: 'type'
+        accessor: (b) => constants.Product.Type[b.type]
       },
       {
         Header: 'Ціна',

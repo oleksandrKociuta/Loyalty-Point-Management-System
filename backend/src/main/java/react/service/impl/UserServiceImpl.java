@@ -7,10 +7,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import react.model.user.User;
 import react.repository.UserRepository;
-import react.service.UserDAO;
+import react.service.UserService;
 
 @Service
-public class UserDAOImpl implements UserDAO {
+public class UserServiceImpl implements UserService {
   private final Log log = LogFactory.getLog(getClass());
 
   @Autowired

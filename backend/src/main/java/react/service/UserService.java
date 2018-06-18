@@ -2,7 +2,7 @@ package react.service;
 
 import react.model.user.User;
 
-public interface UserDAO {
+public interface UserService {
 
   User createUser(User user);
 

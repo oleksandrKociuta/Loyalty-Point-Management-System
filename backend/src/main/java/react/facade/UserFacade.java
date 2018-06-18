@@ -6,14 +6,14 @@ import react.model.Credentials;
 import react.model.RegistrationForm;
 import react.model.user.Role;
 import react.model.user.User;
-import react.service.UserDAO;
+import react.service.UserService;
 import react.utils.UserConverter;
 
 @Component
 public class UserFacade {
 
   @Autowired
-  private UserDAO dao;
+  private UserService dao;
 
   public User createUser(RegistrationForm form) {
     User newUser = UserConverter.convertUserFromRegistationForm(form, Role.USER);;

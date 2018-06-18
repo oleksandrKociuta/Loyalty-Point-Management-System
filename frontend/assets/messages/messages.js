@@ -5,20 +5,20 @@ module.exports =
     greeting: "Hello %(name)s! How are you today?"
   },
   login: {
-    title: "Login Page",
+    title: "Сторінка Входу",
     hint: "Default login and password are 'user' and 'password'",
     error: {
       private: "Please login to access this page",
-      unauthorized: "Please login to access this resource",
-      badLogin: "Incorrect user and password"
+      unauthorized: "Будь ласка, залогінтеся, щоб отримати доступ до ресурсу!",
+      badLogin: "Неправильні логін та пароль! "
     }
   },
   registration: {
-    title: "Registration Page",
+    title: "Реєстраційна Сторінка",
     error: {
-      emptyMandatoryFields: "Please input ALL fields!",
-      passwordValidationError: "Passwords must be identical, and the length of the password must be greater than eight characters long!",
-      duplication: "Login or Phone are already used!"
+      emptyMandatoryFields: "Будь ласка, заповніть усі поля!",
+      passwordValidationError: "Паролі мусять бути ідентичні та їх довжина мусить становити 8 символів!",
+      duplication: "Логін або пароль вже використовуються!"
     }
   }
 }

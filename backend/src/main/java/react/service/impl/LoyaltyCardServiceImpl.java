@@ -3,9 +3,9 @@ package react.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import react.model.card.shopcard.LoyaltyCard;
 import react.repository.LoyaltyCardRepository;
-import react.service.LoyaltyCardDao;
+import react.service.LoyaltyCardService;
 
-public class LoyaltyCardDAOimpl implements LoyaltyCardDao {
+public class LoyaltyCardServiceImpl implements LoyaltyCardService {
 
   @Autowired
   private LoyaltyCardRepository repository;

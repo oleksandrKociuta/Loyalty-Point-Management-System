@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import ReactTable from 'react-table';
 import { getAllShops, deleteShop } from "../../reducers/shop";
 import { getAllProducts, deleteProduct } from "../../reducers/products";
+import constants from "../../../assets/constants/constants";
 
 
 class ShopComponent extends Component {
@@ -37,7 +38,7 @@ class ShopComponent extends Component {
       {
         Header: 'Тип',
         id: 'type',
-        accessor: 'type'
+        accessor: (b) => constants.Shop[b.type]
       },
       {
         Header: 'дії',
@@ -62,7 +63,7 @@ class ShopComponent extends Component {
     return (
       <div className="panel panel-success shop-panel">
         <div className="panel-heading">
-          <h3>Procedures Data:</h3>
+          <h3>Магазини:</h3>
           <Button onClick={() => this.openShopModal()}>
             Додати новий магазин
         </Button>

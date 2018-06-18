@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import react.model.card.paycard.PayCard;
 import react.model.user.User;
-import react.service.PayCardDAO;
+import react.service.PayCardService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class PayCardFacade {
 
   @Autowired
-  private PayCardDAO cardDao;
+  private PayCardService cardDao;
 
   public PayCard addCard(Map<String, String> attrs) {
     PayCard payCard = new PayCard();

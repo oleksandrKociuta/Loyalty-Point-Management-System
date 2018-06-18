@@ -54,16 +54,16 @@ export default class RegistrationForm extends Component {
         <form onSubmit={this.handleSubmit} className="pure-form pure-form-aligned unauthorized-form">
           <h1>{messages.registration.title}</h1>
           {errorPanel}
-          <LabeledInput onChange={this.handleInputChange} label="First name" name="firstName"/>
-          <LabeledInput onChange={this.handleInputChange} label="Last name" name="lastName"/>
-          <LabeledInput onChange={this.handleInputChange} label="Email" name="email"/>
-          <LabeledInput onChange={this.handleInputChange} label="Login" name="username"/>
-          <LabeledInput onChange={this.handleInputChange} label="Phone" name="phone"/>
-          <LabeledInput onChange={this.handleInputChange} label="Enter Password" name="password1" type="password"/>
-          <LabeledInput onChange={this.handleInputChange} label="Re-enter Password" name="password2" type="password"/>
+          <LabeledInput onChange={this.handleInputChange} label="Ім'я" name="firstName"/>
+          <LabeledInput onChange={this.handleInputChange} label="Прізвище" name="lastName"/>
+          <LabeledInput onChange={this.handleInputChange} label="Мейл" name="email"/>
+          <LabeledInput onChange={this.handleInputChange} label="Логін" name="username"/>
+          <LabeledInput onChange={this.handleInputChange} label="Телефон" name="phone"/>
+          <LabeledInput onChange={this.handleInputChange} label="Введіть пароль" name="password1" type="password"/>
+          <LabeledInput onChange={this.handleInputChange} label="Введіть ще раз" name="password2" type="password"/>
           <div className="pure-controls unauthorized-buttons">
-            <button type="submit" className="pure-button pure-button-primary unauthorized-buttons">Registrate</button>
-            <button onClick={()=>this.props.switchToLogin()} className="pure-button pure-button-primary">Login form</button>
+            <button type="submit" className="pure-button pure-button-primary unauthorized-buttons">Зареєструватися</button>
+            <button onClick={()=>this.props.switchToLogin()} className="pure-button pure-button-primary">Логінування</button>
           </div>
         </form>
       </div>

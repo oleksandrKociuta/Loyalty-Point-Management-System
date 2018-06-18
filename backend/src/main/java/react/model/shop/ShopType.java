@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ShopType {
 
-  SPORT("Sport"), ONLINE("Online");
+  SPORT("Спортивний"), ONLINE("Онлайн");
 
   private String type;
 

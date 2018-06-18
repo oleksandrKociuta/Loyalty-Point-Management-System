@@ -4,7 +4,7 @@ import react.model.card.paycard.PayCard;
 
 import java.util.List;
 
-public interface PayCardDAO {
+public interface PayCardService {
 
   PayCard savePayCard(PayCard payCard);
 
